@@ -1,7 +1,9 @@
 name: 📚 Documentation Request
 description: Suggest improvements or additions to documentation
 title: "[DOC]: "
-labels: ["Type: Documentation", "Status: New"]
+labels:
+- "documentation"
+- "new"
 type: documentation
 body:
   - type: markdown

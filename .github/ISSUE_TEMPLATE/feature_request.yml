@@ -1,7 +1,11 @@
 name: "✨ Feature Request"
 description: "Suggest a new feature or enhancement"
 title: "[FEAT]: "
-labels: ["Type: Enhancement", "Status: Needs Triage"]
+labels:
+- "feature"
+- "enhancement"
+- "new"
+- "needs triage"
 type: enhancement
 body:
   - type: markdown

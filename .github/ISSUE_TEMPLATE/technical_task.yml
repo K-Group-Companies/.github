@@ -1,7 +1,10 @@
 name: 🛠️ Technical Task / Chore
 description: Maintenance, refactoring, or dependency updates
 title: "[CHORE]: "
-labels: ["Type: maintenance", "Type: internal", "Status: New"]
+labels:
+- "maintenance"
+- "new"
+- "needs triage"
 type: chore
 body:
   - type: textarea

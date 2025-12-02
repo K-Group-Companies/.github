@@ -1,7 +1,9 @@
 name: 💬 General Feedback
 description: Share feedback or ideas not covered by other templates
 title: "[FEEDBACK]: "
-labels: ["Type: feedback", "Status: New"]
+labels:
+- "question"
+- "new"
 type: feedback
 body:
   - type: textarea
