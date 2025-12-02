@@ -1,0 +1,57 @@
+name: 🛠️ Technical Task / Chore
+description: Maintenance, refactoring, or dependency updates
+title: "[CHORE]: "
+labels: ["Type: maintenance", "Type: internal", "Status: New"]
+type: chore
+body:
+  - type: textarea
+    id: task-description
+    attributes:
+      label: 🏗️ Task Description
+      description: Provide a good description of what is needed to be done.
+      placeholder: Describe the task...
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: 🎯 Acceptance Criteria
+      description: List the requirements that need to be met.
+      placeholder: |
+        - [ ] Requirement A met
+        - [ ] Requirement B met
+        - [ ] Tests pass
+      value: |
+        - [ ] Requirement A met
+        - [ ] Requirement B met
+        - [ ] Tests pass
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks-impact
+    attributes:
+      label: ⚠️ Risks / Impact
+      description: Will there be any risks involved in making this change, if so what will the impact be?
+      placeholder: Describe any risks or impacts...
+    validations:
+      required: false
+
+  - type: textarea
+    id: references
+    attributes:
+      label: 🔗 References
+      description: Add any relevant links or references.
+      placeholder: Links, docs, or related issues...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

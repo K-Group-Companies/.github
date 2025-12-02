@@ -1,0 +1,32 @@
+name: 💬 General Feedback
+description: Share feedback or ideas not covered by other templates
+title: "[FEEDBACK]: "
+labels: ["Type: feedback", "Status: New"]
+type: feedback
+body:
+  - type: textarea
+    id: feedback
+    attributes:
+      label: 🗣 Feedback
+      description: Share your thoughts, suggestions, or concerns.
+      placeholder: Your feedback here...
+    validations:
+      required: true
+
+  - type: textarea
+    id: importance
+    attributes:
+      label: ✅ Why Is This Important?
+      description: Explain in as much detail as possible.
+      placeholder: Explain the importance...
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

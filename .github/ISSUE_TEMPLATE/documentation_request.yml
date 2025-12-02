@@ -1,0 +1,46 @@
+name: 📚 Documentation Request
+description: Suggest improvements or additions to documentation
+title: "[DOC]: "
+labels: ["Type: Documentation", "Status: New"]
+type: documentation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping us improve our documentation!
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 📝 Description
+      description: What part of the documentation needs improvement?
+      placeholder: Describe the documentation area that needs attention
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-changes
+    attributes:
+      label: ✅ Suggested Changes
+      description: Provide details on what should be added or changed.
+      placeholder: Describe your suggested improvements
+    validations:
+      required: true
+
+  - type: input
+    id: related-pages
+    attributes:
+      label: 🔗 Related Pages
+      description: Link to relevant documentation pages
+      placeholder: https://example.com/docs/page
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

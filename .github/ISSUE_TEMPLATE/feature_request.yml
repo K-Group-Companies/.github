@@ -1,0 +1,64 @@
+name: "✨ Feature Request"
+description: "Suggest a new feature or enhancement"
+title: "[FEAT]: "
+labels: ["Type: Enhancement", "Status: Needs Triage"]
+type: enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! Please fill out the details below so we can triage efficiently.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: "💡 Summary"
+      description: "Describe the feature you'd like to see."
+      placeholder: "What is the feature? Provide a concise overview."
+    validations:
+      required: true
+
+  - type: textarea
+    id: why-needed
+    attributes:
+      label: "✅ Why Is This Needed?"
+      description: "Explain the problem this feature solves or the value it adds."
+      placeholder: "What pain point does this address? Who benefits?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: "🛠 Proposed Solution"
+      description: "Outline your idea for implementation."
+      placeholder: "High-level approach, components involved, potential risks."
+    validations:
+      required: false
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: "🎨 Mockups / Examples"
+      description: "Provide any mockups or examples you may have."
+      placeholder: "Links to designs, screenshots, or references."
+    validations:
+      required: false
+
+  - type: textarea
+    id: related
+    attributes:
+      label: "🔗 Related Issues / PRs"
+      description: "Link to any related issues or pull requests."
+      placeholder: "#123, #456"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
