@@ -1,7 +1,7 @@
 ---
 name: 💬 General Feedback
 about: Share feedback or ideas not covered by other templates
-title: "\[FEEDBACK]: "
+title: "[FEEDBACK]: "
 labels: ["Type: feedback"]
 assignees: ''
 ---

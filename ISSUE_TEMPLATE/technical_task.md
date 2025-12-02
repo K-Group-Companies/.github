@@ -1,7 +1,7 @@
 ---
 name: 🛠️ Technical Task / Chore
 about: Maintenance, refactoring, or dependency updates
-title: "\[CHORE] "
+title: "[CHORE] "
 labels: ["Type: maintenance, Type: internal"]
 assignees: ''
 ---

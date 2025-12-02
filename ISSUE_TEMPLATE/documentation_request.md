@@ -1,7 +1,7 @@
 ---
 name: 📚 Documentation Request
 about: Suggest improvements or additions to documentation
-title: "\[DOC]: "
+title: "[DOC]: "
 labels: ["Type: documentation"]
 assignees: ''
 ---

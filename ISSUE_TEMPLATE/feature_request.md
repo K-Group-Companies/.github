@@ -1,7 +1,7 @@
 ---
 name: ✨ Feature Request
 about: Suggest a new feature or enhancement
-title: "\[FEAT]: "
+title: "[FEAT]: "
 labels: ["Type: enhancement, Status: needs-triage"]
 assignees: ''
 ---
