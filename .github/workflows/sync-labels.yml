@@ -5,7 +5,7 @@ name: Sync org labels
 
 on:
   schedule:
-    - cron: '0 6 * * 1'   # Mondays 06:00 UTC
+    - cron: '0 6 * * *'   # Daily 06:00 UTC
   workflow_dispatch: {}     # allow manual runs from the Actions tab
 
 permissions: {}             # no GITHUB_TOKEN perms needed; we use LABEL_SYNC_TOKEN
