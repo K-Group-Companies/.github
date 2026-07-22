@@ -1,0 +1,19 @@
+.github/workflows/prettier-lint.yml
+  s_47bbbbdf316578::t_aad7a883e04dca 14-22,33-38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "637dd741e0519aa742e5ba1bb45326b0d3bb371a",
+  "prompts": {},
+  "sessions": {
+    "s_47bbbbdf316578": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4e6251c5-7d91-403d-a566-c7d5c311998c",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Cameron Klenk <cameronk@kgroupcompanies.com>"
+    }
+  }
+}
