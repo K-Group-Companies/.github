@@ -1,0 +1,90 @@
+name: Sync org labels
+
+# Standardizes issue/PR labels across all non-archived repos in the org.
+# Additive: creates or updates the standard set; never deletes other labels.
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # Mondays 06:00 UTC
+  workflow_dispatch: {}     # allow manual runs from the Actions tab
+
+permissions: {}             # no GITHUB_TOKEN perms needed; we use LABEL_SYNC_TOKEN
+
+concurrency:
+  group: sync-org-labels
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.LABEL_SYNC_TOKEN }}
+      ORG: ${{ github.repository_owner }}
+    steps:
+      - name: Check token
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::LABEL_SYNC_TOKEN is not set. Add an org (or repo) Actions secret named LABEL_SYNC_TOKEN with a PAT that has repo/issues write access."
+            exit 1
+          fi
+
+      - name: Sync labels
+        run: |
+          set -euo pipefail
+
+          # --- Standard label set: name|color|description ---
+          STANDARD=$(cat <<'EOF'
+          bug|d73a4a|Something isn't working
+          enhancement|a2eeef|New feature or request
+          documentation|0075ca|Improvements or additions to documentation
+          question|d876e3|Further information is requested
+          duplicate|cfd3d7|This issue or pull request already exists
+          wontfix|ffffff|This will not be worked on
+          invalid|e4e669|This doesn't seem right
+          good first issue|7057ff|Good for newcomers
+          help wanted|008672|Extra attention is needed
+          chore|fef2c0|Maintenance work. Eg: refactoring, dependency upgrade, build script changes
+          dependencies|0366d6|Pull requests that update a dependency file
+          javascript|168700|Pull requests that update javascript code
+          EOF
+          )
+
+          created=0; updated=0; skipped=0
+
+          repos=$(gh repo list "$ORG" --limit 200 --json name,isArchived \
+            --jq '.[] | select(.isArchived==false) | .name')
+
+          for repo in $repos; do
+            full="$ORG/$repo"
+            echo "::group::$full"
+            # Map of existing labels: "name<TAB>color<TAB>description"
+            existing=$(gh label list --repo "$full" --limit 200 \
+              --json name,color,description \
+              --jq '.[] | [.name, .color, .description] | @tsv' 2>/dev/null || true)
+
+            while IFS='|' read -r name color desc; do
+              [ -z "$name" ] && continue
+              line=$(printf '%s\n' "$existing" | awk -F'\t' -v n="$name" '$1==n {print; exit}')
+              if [ -z "$line" ]; then
+                gh label create "$name" --repo "$full" --color "$color" --description "$desc" --force >/dev/null
+                echo "CREATE  '$name'"
+                created=$((created+1))
+              else
+                curColor=$(printf '%s' "$line" | cut -f2)
+                curDesc=$(printf '%s' "$line" | cut -f3-)
+                if [ "$curColor" != "$color" ] || [ "$curDesc" != "$desc" ]; then
+                  gh label edit "$name" --repo "$full" --color "$color" --description "$desc" >/dev/null
+                  echo "UPDATE  '$name'"
+                  updated=$((updated+1))
+                else
+                  skipped=$((skipped+1))
+                fi
+              fi
+            done <<< "$STANDARD"
+            echo "::endgroup::"
+          done
+
+          echo "### Label sync summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Created: $created" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Updated: $updated" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Already correct: $skipped" >> "$GITHUB_STEP_SUMMARY"
