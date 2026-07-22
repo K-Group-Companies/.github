@@ -44,7 +44,7 @@ jobs:
           good first issue|7057ff|Good for newcomers
           help wanted|008672|Extra attention is needed
           chore|fef2c0|Maintenance work. Eg: refactoring, dependency upgrade, build script changes
-          dependencies|0366d6|Pull requests that update a dependency file
+          dependencies|5319e7|Pull requests that update a dependency file
           javascript|168700|Pull requests that update javascript code
           EOF
           )
