@@ -1,6 +1,7 @@
 # Reusable Prettier lint check for K-Group-Companies repos.
 # Lives in K-Group-Companies/.github at .github/workflows/prettier-lint.yml
-# Caller repos reference it via `uses:` (see caller-lint.yml).
+# Caller repos reference it from their own workflow via:
+#   uses: K-Group-Companies/.github/.github/workflows/prettier-lint.yml@main
 name: Prettier Lint (reusable)
 
 on:
