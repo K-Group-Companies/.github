@@ -1,0 +1,24 @@
+# Reusable Prettier lint check for K-Group-Companies repos.
+# Lives in K-Group-Companies/.github at .github/workflows/prettier-lint.yml
+# Caller repos reference it via `uses:` (see caller-lint.yml).
+name: Prettier Lint (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      glob:
+        description: Prettier target glob
+        required: false
+        type: string
+        default: "**/*.{json,scss,js}"
+
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check formatting
+        run: npx --yes prettier@3 --check "${{ inputs.glob }}"
