@@ -10,16 +10,16 @@
 
 ### 🧹 One-Time Machine Setup: Global gitignore
 
-If you use **Claude Code** (or any AI coding assistant that writes to a `.claude/` folder), configure a [global gitignore](https://docs.github.com/en/get-started/git-basics/ignoring-files#configuring-ignored-files-for-all-repositories-on-your-computer) once so your personal, machine-specific settings never get committed to any repo. Only `.claude/settings.json` is meant to be shared — `settings.local.json` and runtime files are personal and often contain local paths.
+If you use **Claude Code** (or any AI coding assistant that writes to a `.claude/` folder), configure a [global gitignore](https://docs.github.com/en/get-started/git-basics/ignoring-files#configuring-ignored-files-for-all-repositories-on-your-computer) once so your personal, machine-specific settings never get committed to any repo. Only `.claude/settings.json` is meant to be shared — `.claude/settings.local.json` and `.claude/scheduled_tasks.lock` are personal and often contain local paths.
 
-Add these lines to your global ignore file (Git reads `~/.config/git/ignore` by default; on Windows that is `%USERPROFILE%\.config\git\ignore`):
+Add these lines to your global ignore file. Git uses the file named by `core.excludesFile`; when that is unset it defaults to `$XDG_CONFIG_HOME/git/ignore`, i.e. `~/.config/git/ignore` (on Windows, `%USERPROFILE%\.config\git\ignore`):
 
 ```gitignore
 **/.claude/settings.local.json
 **/.claude/scheduled_tasks.lock
 ```
 
-> **Note:** use forward slashes even on Windows. A backslash (`.claude\settings.local.json`) is a gitignore escape character, not a path separator, and silently matches nothing.
+> **Note:** use forward slashes even on Windows. In gitignore syntax `\` is an escape character, not a path separator, so a backslash pattern like `.claude\settings.local.json` is non-portable — its behavior varies by platform. Forward slashes match reliably everywhere.
 
 Verify it works with `git check-ignore -v <path>` in any repo — it should report the rule that matches.
 
