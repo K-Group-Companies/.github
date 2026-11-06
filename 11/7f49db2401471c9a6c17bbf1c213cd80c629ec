@@ -1,0 +1,19 @@
+.github/workflows/sync-labels.yml
+  s_35f7b5a80e6717::t_b7f6aeb4da8d96 91-102
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "117f49db2401471c9a6c17bbf1c213cd80c629ec",
+  "prompts": {},
+  "sessions": {
+    "s_35f7b5a80e6717": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bb65bd05-940d-459e-8437-6f0072952b76",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Cameron Klenk <cameronk@kgroupcompanies.com>"
+    }
+  }
+}
