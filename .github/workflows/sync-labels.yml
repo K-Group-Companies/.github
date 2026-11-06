@@ -88,3 +88,15 @@ jobs:
           echo "- Created: $created" >> "$GITHUB_STEP_SUMMARY"
           echo "- Updated: $updated" >> "$GITHUB_STEP_SUMMARY"
           echo "- Already correct: $skipped" >> "$GITHUB_STEP_SUMMARY"
+
+  # GitHub disables scheduled workflows after 60 days without repo activity.
+  # Re-enabling on every run resets that clock so the daily sync keeps running.
+  keepalive:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Re-enable this workflow
+        run: gh workflow enable sync-labels.yml --repo "$GITHUB_REPOSITORY"
