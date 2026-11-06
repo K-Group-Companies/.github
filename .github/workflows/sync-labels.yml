@@ -90,7 +90,8 @@ jobs:
           echo "- Already correct: $skipped" >> "$GITHUB_STEP_SUMMARY"
 
   # GitHub disables scheduled workflows after 60 days without repo activity.
-  # Re-enabling on every run resets that clock so the daily sync keeps running.
+  # Re-enabling on every run attempts to keep the schedule active; whether this
+  # resets the inactivity clock is unverified and requires follow-up monitoring.
   keepalive:
     runs-on: ubuntu-latest
     permissions:
